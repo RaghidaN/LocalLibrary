@@ -30,19 +30,12 @@ function getMostCommonGenres(books) {
   let genres = books.map(book => book.genre)
 
   //count occurrences of genre, for each genre
-  
-  const count = {};
+    let count = books.reduce(function (acc, item) {
+        acc[item.genre] = (acc[item.genre] || 0) + 1;
+        return acc;
+    }, {});
 
-  for (const element of genres) {
-    if (count[element]) {
-      count[element] += 1
-    } else {
-      count[element] = 1
-    }
-  } 
-
-  //returns one big object, need to split into individual objects
-  
+  //separate into several objects
   let genreCount =[]
   let counts = Object.values(count)
   let keys = Object.keys(count)
